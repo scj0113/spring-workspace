@@ -22,11 +22,12 @@ pageEncoding="UTF-8"%>
   </head>
   <body>
     <div class="container">
-      <h1>게시글 등록</h1>
-      <form action="/board/insert" method="post">
+      <h1>게시글 정보</h1>
+      <form action="/board/update" method="post">
+      <input type="hidden" name="no" value="${vo.no}">
         <div class="form-group">
           <label for="title">Title</label>
-          <input type="text" name="title" id="title" class="form-control" />
+          <input type="text" name="title" id="title" value="${vo.title}" class="form-control" />
         </div>
         <div class="form-group">
           <label for="content">Content</label>
@@ -36,14 +37,15 @@ pageEncoding="UTF-8"%>
             cols="30"
             rows="10"
             class="form-control"
-            style="resize: none"
-          ></textarea>
+            style="resize: none"            
+          >${vo.content}</textarea>
         </div>
         <div class="form-group">
           <label for="writer">Writer</label>
-          <input type="text" id="writer" name="writer" class="form-control" />
+          <input type="text" id="writer" readonly name="writer" value="${vo.writer}" class="form-control" />
         </div>
-        <button type="submit" class="btn btn-outline-warning">등록</button>
+        <button type="submit" class="btn btn-outline-warning">수정</button>
+        <a class="btn btn-outline-danger" href="/board/delete?no=${vo.no}">삭제</a>
       </form>
     </div>
   </body>
