@@ -4,14 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 
 import com.kh.mvc.model.service.MemberService;
-import com.kh.mvc.model.vo.Member;
-
-
 
 @Controller
+//@RequestMapping("/member/*") 공통적인것이 있을땐 이렇게 처리가능
 public class MemberController {
 
 	@Autowired
@@ -19,44 +16,9 @@ public class MemberController {
 	
 	@Autowired
 	private BCryptPasswordEncoder bcpe;
-		
-	@GetMapping("/all")
-	public void all() {}
 	
-	@GetMapping("/member")
-	public void member() {}
-	
-	@GetMapping("/admin")
-	public void admin() {}
-	
-	@GetMapping("/login")
+	@GetMapping("/member/login")
 	public void login() {}
-	
-	@GetMapping("/logout")
-	public void logout() {}
-	
-	@GetMapping("/error")
-	public void error() {}
-	
-	@GetMapping("/register")
-	public void register() {}
 		
-	@PostMapping("/register")
-	public String register(Member vo) {
-		
-		System.out.println("before password :"+vo.getPassword());
-		
-		// BcrytPasswordEncoder를 이용해서 암호화 처리
-		String encodePassword = bcpe.encode(vo.getPassword());
-		System.out.println("after password :"+ encodePassword);
-		
-		vo.setPassword(encodePassword);
-		
-		
-		service.registerMember(vo);
-		return "redirect:/login";
-		
-	}
-	
-	
+
 }

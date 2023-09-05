@@ -9,7 +9,7 @@ public class Paging {
 	private int endPage;
 	private boolean prev;
 	private boolean next;
-	private int num = 10;   // 한 페이지의 보여질 개수
+	private int num = 10; // 한 페이지의 보여질 게시글 개수
 	
 	private int total;
 	private Criteria cri;
@@ -18,10 +18,11 @@ public class Paging {
 		this.cri = cri;
 		this.total = total;
 		
-		this.endPage = (int)Math.ceil((double)cri.getPage() / this.num) * this.num;
-		this.startPage = this.endPage - this.num + 1;
+		// double을 사용하는 이유는 소숫점이 나오면 한 페이지를 더 추가해야 하기때문에 double 사용
+		this.endPage = (int) Math.ceil((double)cri.getPage() / this.num) * this.num;
+		this.startPage = this.endPage - this.num+1;
 		
-		int lastPage = (int)Math.ceil((double)total / cri.getAmount());
+		int lastPage = (int) Math.ceil((double)total / cri.getAmount());
 		
 		if(lastPage < this.endPage) {
 			this.endPage = lastPage;
@@ -30,5 +31,4 @@ public class Paging {
 		this.prev = this.startPage > 1;
 		this.next = this.endPage < lastPage;
 	}
-	
 }

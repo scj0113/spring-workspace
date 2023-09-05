@@ -11,7 +11,7 @@ import lombok.Data;
 
 @Data
 public class Member implements UserDetails{
-	
+
 	private String id;
 	private String password;
 	private String name;
@@ -19,8 +19,7 @@ public class Member implements UserDetails{
 	private String auth;
 	private int enabled;
 	
-	
-	// getAuthorities : 회원의 auth(role) 정보 getter
+	// getAthorities : 회원의 auth(role) 정보 getter
 	
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -29,7 +28,7 @@ public class Member implements UserDetails{
 		return authList;
 	}
 	@Override
-	public String getUsername() {		
+	public String getUsername() {
 		return id;
 	}
 	@Override
@@ -46,6 +45,6 @@ public class Member implements UserDetails{
 	}
 	@Override
 	public boolean isEnabled() {
-		return enabled == 1 ? true : false;
+		return enabled==1 ? true : false;
 	}
 }
